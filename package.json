@@ -17,6 +17,10 @@
   "dependencies": {
     "font-awesome": "^4.6.3",
     "normalize-css": "^2.3.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "revue": "^3.0.0",
+    "vue": "^2.2.1",
     "whatwg-fetch": "^2.0.2",
     "yoga-sass": "^1.0.1"
   },
