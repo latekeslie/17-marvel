@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div class="modal">Filler content</div>
+    <div class="modal"><div class="modal-content">Filler content</div></div>
       <div class="container">
         <nav class='navbar'>
           <div>Marvel
