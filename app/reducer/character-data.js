@@ -1,4 +1,4 @@
-export default function (state = [], action) {
+export default function character(state = [], action) {
   switch (action.type) {
     case 'CHARACTERS@FIND_ALL_COMPLETE':
       return action.data;

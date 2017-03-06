@@ -1,0 +1,43 @@
+
+
+
+.character-container {
+  margin-left: 2rem;
+
+  h1 {
+    border-bottom: 0.15rem solid;
+  }
+
+  button {
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    background-color: $c-blue;
+    color: $c-white;
+  }
+}
+
+.upper-character__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  div {
+    flex-basis: calc(100% /4 - 1rem - 1rem);
+    flex-grow: 1;
+    margin: 1rem;
+  }
+
+
+}
+
+.lower-character__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  div {
+    flex-basis: calc(100% /4 - 1rem - 1rem);
+    flex-grow: 1;
+    margin: 1rem;
+  }
+}
