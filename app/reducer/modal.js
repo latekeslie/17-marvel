@@ -1,4 +1,4 @@
-export default function modal(state = [], action) {
+export default function modal(state = null, action) {
   switch (action.type) {
     case 'MODAL@SET':
       return action.data;

@@ -16,5 +16,32 @@ export function setModal(description) {
 }
 
 export function clearModal() {
-  return { type: 'MODAL@CLEAR' }
+  return { type: 'MODAL@CLEAR' };
+}
+
+export function seriesInfoSearch(id) {
+  return (dispatch) => {
+    fetch('http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=TITLE').then(r => r.json()).then((data) => {
+      const series = data.data.results;
+      dispatch(loadSeries(series));
+    });
+  };
+}
+
+export function charactersSearch(id) {
+  return (dispatch) => {
+    fetch('http://marvel-is-broke.herokuapp.com/series/ID/characters').then(r => r.json()).then((data) => {
+      const characters = data.data.results;
+      dispatch(loadCharacters(characters));
+    });
+  };
+}
+
+export function comicsSearch(id) {
+  return (dispatch) => {
+    fetch('http://marvel-is-broke.herokuapp.com/series/ID/comics').then(r => r.json()).then((data) => {
+      const comics = data.data.results;
+      dispatch(loadComics(comics));
+    });
+  };
 }

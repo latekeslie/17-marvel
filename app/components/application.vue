@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import store from '../store';
+import { seriesInfoSearch } from '../actions'
 export default {
   data() {
     return {

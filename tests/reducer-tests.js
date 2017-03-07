@@ -6,42 +6,42 @@ module('reducer', () => {
   });
 
   test('character: CHARACTERS@FIND_ALL_COMPLETE', (assert) => {
-    const startingState = {};
-    const action = { type: 'CHARACTERS@FIND_ALL_COMPLETE', data: { name: 'Pad Thai', superpower: 'fluffiness' } };
-    const expectedState = { name: 'Pad Thai', superpower: 'fluffiness' };
+    const startingState = { characters: [], comics: [], series: null, modal: null };
+    const action = { type: 'CHARACTERS@FIND_ALL_COMPLETE', data: [{ name: 'Pad Thai', superpower: 'fluffiness' }] };
+    const expectedState = { characters: [{ name: 'Pad Thai', superpower: 'fluffiness' }], comics: [], series: null, modal: null };
 
-    assert.deepEqual(reducer(startingState, action).characters, expectedState, 'Character data is added');
+    assert.deepEqual(reducer(startingState, action), expectedState, 'Character data is added');
   });
 
   test('series: SERIES_INFO@LOAD_COMPLETE', (assert) => {
-    const startingState = {};
-    const action = { type: 'SERIES_INFO@LOAD_COMPLETE', data: { series: 'Cats vs Dogs', issue: '17' } };
-    const expectedState = { series: 'Cats vs Dogs', issue: '17' };
+    const startingState = { characters: [], comics: [], series: null, modal: null };
+    const action = { type: 'SERIES_INFO@LOAD_COMPLETE', data: 'Cats vs Dogs' };
+    const expectedState = { series: 'Cats vs Dogs', comics: [], modal: null, characters: []  };
 
-    assert.deepEqual(reducer(startingState, action).series, expectedState, 'Series data is added');
+    assert.deepEqual(reducer(startingState, action), expectedState, 'Series data is added');
   });
 
   test('comic: COMICS@FIND_ALL_COMPLETE', (assert) => {
-    const startingState = {};
-    const action = { type: 'COMICS@FIND_ALL_COMPLETE', data: { name: 'Fluffzone' } };
-    const expectedState = { name: 'Fluffzone' };
+    const startingState = { characters: [], comics: [], series: null, modal: null };
+    const action = { type: 'COMICS@FIND_ALL_COMPLETE', data: [{ name: 'Fluffzone' }] };
+    const expectedState = { comics: [{ name: 'Fluffzone' }], characters: [], series: null, modal: null };
 
-    assert.deepEqual(reducer(startingState, action).comics, expectedState, 'Comic data is added');
+    assert.deepEqual(reducer(startingState, action), expectedState, 'Comic data is added');
   });
 
   test('modal: MODAL@SET', (assert) => {
-    const startingState = [];
+    const startingState = { characters: [], comics: [], series: null, modal: null };
     const action = { type: 'MODAL@SET', data: 'Pad Thai is a super model of the cat world' };
-    const expectedState = { data: 'Pad Thai is a super model of the cat world' };
+    const expectedState = { modal: 'Pad Thai is a super model of the cat world', comics: [], characters: [], series: null, };
 
-    assert.deepEqual(reducer(startingState, action).modal, expectedState, 'It fills in modal data');
+    assert.deepEqual(reducer(startingState, action), expectedState, 'It fills in modal data');
   });
 
   test('modal: MODAL@CLEAR', (assert) => {
-    const startingState = { data: 'Pad Thai is a super model of the cat world' };
+    const startingState = { characters: [], comics: [], series: null, modal: null };
     const action = { type: 'MODAL@CLEAR' };
-    const expectedState = null;
+    const expectedState = { characters: [], comics: [], series: null, modal: null };
 
-    assert.deepEqual(reducer(startingState, action).modal, expectedState, null);
+    assert.deepEqual(reducer(startingState, action), expectedState, 'It sets modal to null');
   });
 });
