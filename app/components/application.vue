@@ -98,6 +98,10 @@ export default {
     };
   },
 
+  mounted( {
+    store.dispatch(seriesInfoSearch('Hulk'));
+  })
+
   methods: {
 
   },

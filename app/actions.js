@@ -1,18 +1,18 @@
 
 export function loadSeries(series) {
-  return { type: 'SERIES_INFO@LOAD_COMPLETE', series: series }
+  return { type: 'SERIES_INFO@LOAD_COMPLETE', data: series }
 }
 
 export function loadCharacters(characters) {
-   return { type: 'CHARACTERS@FIND_ALL_COMPLETE', characters: characters }
+   return { type: 'CHARACTERS@FIND_ALL_COMPLETE', data: characters }
 }
 
 export function loadComics(comics) {
-  return { type: 'COMICS@FIND_ALL_COMPLETE', comics: comics }
+  return { type: 'COMICS@FIND_ALL_COMPLETE', data: comics }
 }
 
 export function setModal(description) {
-  return { type: 'MODAL@SET', description: description }
+  return { type: 'MODAL@SET', data: description }
 }
 
 export function clearModal() {
