@@ -19,18 +19,20 @@ export function clearModal() {
   return { type: 'MODAL@CLEAR' };
 }
 
-export function seriesInfoSearch(id) {
+export function seriesInfoSearch(name) {
   return (dispatch) => {
-    fetch('http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=TITLE').then(r => r.json()).then((data) => {
-      const series = data.data.results;
+    fetch(`http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=${name}`).then(r => r.json()).then((data) => {
+      const series = data.data.results[0];
       dispatch(loadSeries(series));
+      dispatch(charactersSearch(series.id));
+      dispatch(comicsSearch(series.id));
     });
   };
 }
 
 export function charactersSearch(id) {
   return (dispatch) => {
-    fetch('http://marvel-is-broke.herokuapp.com/series/ID/characters').then(r => r.json()).then((data) => {
+    fetch(`http://marvel-is-broke.herokuapp.com/series/${id}/characters`).then(r => r.json()).then((data) => {
       const characters = data.data.results;
       dispatch(loadCharacters(characters));
     });
@@ -39,7 +41,7 @@ export function charactersSearch(id) {
 
 export function comicsSearch(id) {
   return (dispatch) => {
-    fetch('http://marvel-is-broke.herokuapp.com/series/ID/comics').then(r => r.json()).then((data) => {
+    fetch(`http://marvel-is-broke.herokuapp.com/series/${id}/comics`).then(r => r.json()).then((data) => {
       const comics = data.data.results;
       dispatch(loadComics(comics));
     });

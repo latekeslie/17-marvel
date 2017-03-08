@@ -92,6 +92,9 @@ import { seriesInfoSearch } from '../actions'
 export default {
   data() {
     return {
+      seriesData: this.$select('seriesData'),
+      characterData: this.$select('characterData'),
+      comicData: this.$select('comicData'),
     };
   },
 
