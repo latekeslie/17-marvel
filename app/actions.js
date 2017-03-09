@@ -4,7 +4,7 @@ export function loadSeries(series) {
 }
 
 export function loadCharacters(characters) {
-   return { type: 'CHARACTERS@FIND_ALL_COMPLETE', data: characters }
+  return { type: 'CHARACTERS@FIND_ALL_COMPLETE', data: characters }
 }
 
 export function loadComics(comics) {
@@ -21,7 +21,9 @@ export function clearModal() {
 
 export function seriesInfoSearch(name) {
   return (dispatch) => {
-    fetch(`http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=${name}`).then(r => r.json()).then((data) => {
+    fetch(`http://marvel-is-broke.herokuapp.com/series?limit=1&titleStartsWith=${name}`)
+    .then(r => r.json())
+    .then((data) => {
       const series = data.data.results[0];
       dispatch(loadSeries(series));
       dispatch(charactersSearch(series.id));

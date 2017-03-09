@@ -8,18 +8,13 @@
         </nav>
 
     <div class="main-container">
-        <aside class="">
-          <img src="http://lorempixel.com/300/300/cats/" alt="">
-          <h3>Spider Girl</h3>
-          <p>2010 - 2011</p>
+        <aside class="" v-if="series">
+          <img :src="`${series.thumbnail.path}.${series.thumbnail.extension}`" alt="">
+          <h3>{{series.title}}</h3>
+          <p>{{ series.startYear }} - {{ series.endYear }}</p>
           <h2>Creators</h2>
           <ul>
-            <li>Tom Brennan</li>
-            <li>Mike Del Mundo</li>
-            <li>Clayton Henry</li>
-            <li>Barry Kitson</li>
-            <li>Jelena Kevic Djurdjevic</li>
-            <li>Paul Tobin</li>
+            <li v-for="creator in series.creators.items">{{creator.name}}</li>
           </ul>
         </aside>
 
@@ -27,55 +22,21 @@
       <div class="grid-wrapper">
       <h1>Characters</h1>
     <div class="upper-character__container">
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>Red Hulk</p>
-      </div>
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>Red Hulk</p>
-      </div>
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>Red Hulk</p>
-      </div>
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>Red Hulk</p>
+      <div v-for="character in characters"class="item">
+        <img :src="`${character.thumbnail.path}.${character.thumbnail.extension}`" alt="">
+        <p>{{ character.name }}</p>
       </div>
     </div>
 
 
     <h1>Comics</h1>
     <div class="lower-character__container">
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>#8</p>
-        <p>Spider-Girl</p>
-        <p>(2010)#8</p>
+      <div v-for="comic in comics"class="item">
+        <img :src="`${comic.images[0].path}.${comic.images[0].extension}`" alt="">
+        <p>{{ comic.issueNumber }}</p>
+        <p>{{ comic.title }}</p>
+        <p>{{ comic.dates[0].date }}</p>
         <button type="button" name="button">Read More</button>
-      </div>
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>#8</p>
-        <p>Spider-Girl</p>
-        <p>(2010)#8</p>
-        <button type="button" name="button">Read More</button>
-      </div>
-      <div>
-        <img src="http://lorempixel.com/200/200/cats/" alt="">
-        <p>#8</p>
-        <p>Spider-Girl</p>
-        <p>(2010)#8</p>
-        <button type="button" name="button">Read More</button>
-        </div>
-        <div>
-          <img src="http://lorempixel.com/200/200/cats/" alt="">
-          <p>#8</p>
-          <p>Spider-Girl</p>
-          <p>(2010)#8</p>
-          <button type="button" name="button">Read More</button>
-        </div>
       </div>
     </div>
 
@@ -88,21 +49,30 @@
 
 <script>
 import store from '../store';
-import { seriesInfoSearch } from '../actions'
+import { seriesInfoSearch } from '../actions';
+
 export default {
   data() {
+    // showModal()
     return {
-      seriesData: this.$select('seriesData'),
-      characterData: this.$select('characterData'),
-      comicData: this.$select('comicData'),
+      series: this.$select('series'),
+      characters: this.$select('characters'),
+      comics: this.$select('comics'),
     };
   },
 
-  mounted( {
+  mounted() {
     store.dispatch(seriesInfoSearch('Hulk'));
-  })
+  },
 
   methods: {
+    // modal() {
+    //   this.showModal = true;
+    // },
+    //
+    // close() {
+    //   this.showModal = false;
+    // }
 
   },
 };
