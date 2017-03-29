@@ -22,22 +22,13 @@
       <div class="grid-wrapper">
       <h1>Characters</h1>
     <div class="upper-character__container">
-      <div v-for="character in characters"class="item">
-        <img :src="`${character.thumbnail.path}.${character.thumbnail.extension}`" alt="">
-        <p>{{ character.name }}</p>
-      </div>
+      <character-item v-for="item in characters" :character="item"></character-item>
     </div>
 
 
     <h1>Comics</h1>
     <div class="lower-character__container">
-      <div v-for="comic in comics"class="item">
-        <img :src="`${comic.images[0].path}.${comic.images[0].extension}`" alt="">
-        <p>{{ comic.issueNumber }}</p>
-        <p>{{ comic.title }}</p>
-        <p>{{ comic.dates[0].date }}</p>
-        <button type="button" name="button">Read More</button>
-      </div>
+        <comic-item v-for="item in comics" :comic="item"></comic-item>
     </div>
 
   </div>
@@ -50,8 +41,11 @@
 <script>
 import store from '../store';
 import { seriesInfoSearch } from '../actions';
+import characterItem from './character-item.vue';
+import comicItem from './comic-item.vue';
 
 export default {
+  components: { characterItem, comicItem },
   data() {
     // showModal()
     return {
@@ -62,7 +56,7 @@ export default {
   },
 
   mounted() {
-    store.dispatch(seriesInfoSearch('Hulk'));
+    store.dispatch(seriesInfoSearch('hulk'));
   },
 
   methods: {
